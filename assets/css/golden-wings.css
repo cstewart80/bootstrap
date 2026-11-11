@@ -8,7 +8,6 @@
 @font-face{font-family:"Akira Expanded";src:url("../fonts/AkiraExpanded-SuperBold.woff2") format("woff2"),url("../fonts/AkiraExpanded-SuperBold.otf") format("opentype"),url("../fonts/Akira-Expanded-Super-Bold.woff") format("woff");font-weight:400 900;font-style:normal;font-display:swap}
 @font-face{font-family:"Helvetica GW";src:url("../fonts/Helvetica.woff2") format("woff2"),url("../fonts/Helvetica.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Helvetica GW";src:url("../fonts/Helvetica-Bold.woff2") format("woff2"),url("../fonts/Helvetica-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:"Lato";src:url("../fonts/Lato-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
 @font-face{font-family:"Special Elite";src:url("../fonts/SpecialElite-Regular.woff2") format("woff2"),url("../fonts/SpecialElite-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
 
 :root{
@@ -19,9 +18,9 @@
   --gw-n-700:#4A3D2A;--gw-n-600:#6B5C45;--gw-n-400:#B3A489;--gw-n-200:#E8DEC6;
   --gw-muted:#6B5C45;--gw-on-dark-muted:#B9CCD0;--gw-line:rgba(26,18,8,.14);--gw-line-dark:rgba(245,233,200,.22);
   --font-script:"Airstream","Brush Script MT",cursive;
-  --font-display:"Monument Extended","Arial Black",Impact,sans-serif;
-  --font-title:"Akira Expanded","Monument Extended","Arial Black",Impact,sans-serif;
-  --font-body:"Lato","Helvetica GW",Helvetica,Arial,sans-serif;
+  --font-display:"Monument Extended",Impact,sans-serif;
+  --font-title:"Akira Expanded","Monument Extended",Impact,sans-serif;
+  --font-body:"comma-sans-1","comma-sans-2","Helvetica GW",Helvetica,sans-serif;
   --font-typewriter:"Special Elite","Courier New",monospace;
   --fs-display:clamp(28px,4vw,48px);--ls-display:.02em;--ls-caps:.16em;
   --shadow-plate:3px 3px 0 var(--gw-ink);--shadow-plate-lg:6px 6px 0 var(--gw-ink);--shadow-photo:0 12px 30px rgba(26,18,8,.28);

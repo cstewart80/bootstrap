@@ -6,7 +6,7 @@ Bootstrap 5.3 pages with the Golden Wings design system on top.
 1. New design → Blank (Bootstrap 5).
 2. File → Import → **Website**, and pick this folder. Or drag the folder into the Design panel.
 3. Bootstrap Studio swaps the CDN Bootstrap links for its own copy. Keep `golden-wings.css` loading after Bootstrap; Design panel → Styles, drag it below `bootstrap.min.css` if needed.
-4. Fonts are declared with `@font-face` in the CSS and load from `assets/fonts/`, so you don't need to add them in the Fonts panel.
+4. Fonts are declared with `@font-face` in the CSS and load from `assets/fonts/`, so you don't need to add them in the Fonts panel. The body font (Comma Sans) comes from the Adobe Fonts kit `vvd4xah`, linked in each page head; the kit must list every domain the site runs on.
 
 ## Pages
 - `index.html`, `film.html`, `about.html`, `people.html`, `journey.html`, `contact.html`, `press-kit.html`: golden-wings-robyn.com redesign
