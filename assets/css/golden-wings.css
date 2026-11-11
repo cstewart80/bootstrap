@@ -12,7 +12,7 @@
 
 :root{
   /* Brand tokens */
-  --gw-gold:#F2B424;--gw-gold-deep:#C8891A;--gw-gold-pale:#F9DC8A;--gw-mustard:#E8A317;--gw-tangerine:#E8722A;
+  --gw-gold:#F2B424;--gw-gold-deep:#C8891A;--gw-gold-text:#8A5A0A;--gw-gold-pale:#F9DC8A;--gw-mustard:#E8A317;--gw-tangerine:#E8722A;
   --gw-red:#C8271E;--gw-red-deep:#8E1C14;--gw-teal:#1F8A8A;--gw-teal-deep:#0F3D4C;--gw-navy:#0B2A3A;
   --gw-cream:#F5E9C8;--gw-cream-light:#FBF4E2;--gw-ink:#1A1208;--gw-ink-soft:#3A2E1E;
   --gw-n-700:#4A3D2A;--gw-n-600:#6B5C45;--gw-n-400:#B3A489;--gw-n-200:#E8DEC6;
@@ -58,8 +58,10 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:400;text-transform
 /* Type */
 .gw-eyebrow{display:flex;align-items:center;gap:10px;margin:0;font-family:var(--font-typewriter);font-size:12px;letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--gw-red)}
 .gw-eyebrow::before{content:"";width:24px;height:2px;background:currentColor;flex:none}
-.gw-eyebrow--gold{color:var(--gw-gold-deep)}
+.gw-eyebrow--gold{color:var(--gw-gold-text)}
 .gw-eyebrow--light{color:var(--gw-gold)}
+.bg-gw-gold .gw-eyebrow{color:var(--gw-red-deep)}
+.bg-gw-gold .gw-muted,.bg-gw-gold .text-muted{color:var(--gw-ink-soft)!important}
 .gw-title{margin:0;font-family:var(--font-display);font-size:var(--fs-display);line-height:1.15;text-transform:uppercase;letter-spacing:var(--ls-display);text-wrap:balance}
 .gw-title--akira{font-family:var(--font-title);font-weight:900;letter-spacing:0}
 .gw-lead{margin:0;font-size:20px;line-height:1.5;color:var(--gw-muted);max-width:60ch}
