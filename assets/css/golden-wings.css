@@ -27,7 +27,7 @@
   --ease-out:cubic-bezier(.22,1,.36,1);
 
   /* Bootstrap mapping */
-  --bs-body-font-family:var(--font-body);--bs-body-font-size:1.0625rem;--bs-body-font-weight:500;--bs-body-line-height:1.6;
+  --bs-body-font-family:var(--font-body);--bs-body-font-size:1.0625rem;--bs-body-font-weight:400;--bs-body-line-height:1.6;
   --bs-body-bg:var(--gw-cream);--bs-body-color:var(--gw-ink);--bs-emphasis-color:var(--gw-ink);--bs-secondary-color:var(--gw-muted);
   --bs-primary:#F2B424;--bs-primary-rgb:242,180,36;--bs-secondary:#0F3D4C;--bs-secondary-rgb:15,61,76;
   --bs-danger:#C8271E;--bs-danger-rgb:200,39,30;--bs-info:#1F8A8A;--bs-info-rgb:31,138,138;
