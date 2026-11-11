@@ -35,10 +35,29 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   // Press kit: screener form
   var form = document.getElementById('gwScreenerForm');
+  // Set to the deployed screener worker URL (see screener-worker/)
+  var SCREENER_ENDPOINT = '';
   if (form) form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var email = form.querySelector('[type=email]').value || 'your inbox';
-    form.innerHTML = '<div class="d-flex flex-column gap-2 py-4"><span class="badge gw-badge align-self-start">Request received</span><p class="m-0">We will send a screener link to <b></b> shortly.</p></div>';
-    form.querySelector('b').textContent = email;
-  });
-});
+    var btn = form.querySelector('[type=submit]');
+    var email = form.querySelector('[type=email]').value;
+    var note = form.querySelector('.gw-form-error');
+    if (!note) {
+      note = document.createElement('p');
+      note.className = 'gw-form-error m-0';
+      note.setAttribute('role', 'alert');
+      btn.parentNode.appendChild(note);
+    }
+    note.textContent = '';
+    if (!SCREENER_ENDPOINT) { note.textContent = 'Form is not connected yet. Please use the contact page.'; return; }
+    btn.disabled = true;
+    var payload = {};
+    new FormData(form).forEach(function (v, k) { payload[k] = v; });
+    fetch(SCREENER_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+      .then(function (r) { if (!r.ok) throw new Error(); })
+      .then(function () {
+        form.innerHTML = '<div class="d-flex flex-column gap-2 py-4" role="status"><span class="badge gw-badge align-self-start">Request received</span><p class="m-0">We will send a screener link to <b></b> shortly.</p></div>';
+        form.querySelector('b').textContent = email;
+      })
+      .catch(function () { btn.disabled = false; note.textContent = 'Something went wrong. Please try again or use the contact page.'; });
+  });});
