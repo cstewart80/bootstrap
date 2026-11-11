@@ -220,7 +220,7 @@ a.card.gw-card{text-decoration:none;color:inherit}
 .gw-footer__nav a{color:var(--gw-cream);text-decoration:none}
 .gw-footer__nav a:hover{color:var(--gw-gold)}
 .gw-footer__nav .gw-footer__press{color:var(--gw-gold)}
-.gw-guild{position:relative;display:inline-grid;place-items:center;width:16px;height:16px;font-size:11px;line-height:1;color:var(--gw-n-700);cursor:default;transition:color .3s}
+.gw-guild{position:relative;display:inline-grid;place-items:center;width:24px;height:24px;font-size:14px;line-height:1;color:var(--gw-n-700);cursor:default;transition:color .3s}
 .gw-guild img{position:absolute;bottom:22px;left:50%;width:140px;height:140px;opacity:0;pointer-events:none;transform:translateX(-50%) scale(.2) rotate(-40deg);transition:all .45s var(--ease-out);filter:drop-shadow(0 8px 24px rgba(0,0,0,.6))}
 .gw-guild:hover{color:var(--gw-gold)}
 .gw-guild:hover img{opacity:1;transform:translateX(-50%) scale(1) rotate(0)}
