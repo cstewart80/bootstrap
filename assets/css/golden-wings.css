@@ -19,6 +19,7 @@
   --gw-n-700:#4A3D2A;--gw-n-600:#6B5C45;--gw-n-400:#B3A489;--gw-n-200:#E8DEC6;
   --gw-muted:#6B5C45;--gw-on-dark-muted:#B9CCD0;--gw-line:rgba(26,18,8,.14);--gw-line-dark:rgba(245,233,200,.22);
   --font-script:"Airstream","Brush Script MT",cursive;
+  --font-script-test:"redondo-ave-1","redondo-ave-2","Airstream",cursive;
   --font-display:"Monument Extended",Impact,sans-serif;
   --font-title:"Akira Expanded","Monument Extended",Impact,sans-serif;
   --font-body:"comma-sans-1","comma-sans-2","Comma Sans Local","Helvetica GW",Helvetica,sans-serif;
@@ -73,6 +74,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:400;text-transform
 .gw-prose>*{margin:0}
 .gw-prose>*+*{margin-top:20px}
 .gw-script{font-family:var(--font-script);color:var(--gw-gold);line-height:1}
+.gw-script--redondo{font-family:var(--font-script-test);font-weight:700}
 .gw-mono{font-family:var(--font-typewriter)}
 
 /* Plate: the only rounded element */
