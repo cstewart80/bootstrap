@@ -3,12 +3,12 @@
    then the brand components are plain classes (gw-*) that sit on top of Bootstrap markup. */
 
 @font-face{font-family:"Airstream";src:url("../fonts/Airstream.woff2") format("woff2"),url("../fonts/Airstream.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Monument Extended";src:url("../fonts/MonumentExtended-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Monument Extended";src:url("../fonts/MonumentExtended-Ultrabold.otf") format("opentype");font-weight:800;font-style:normal;font-display:swap}
-@font-face{font-family:"Akira Expanded";src:url("../fonts/AkiraExpanded-SuperBold.otf") format("opentype"),url("../fonts/Akira-Expanded-Super-Bold.woff") format("woff");font-weight:400 900;font-style:normal;font-display:swap}
-@font-face{font-family:"Helvetica GW";src:url("../fonts/Helvetica.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Helvetica GW";src:url("../fonts/Helvetica-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:"Special Elite";src:url("../fonts/SpecialElite-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Monument Extended";src:url("../fonts/MonumentExtended-Regular.woff2") format("woff2"),url("../fonts/MonumentExtended-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Monument Extended";src:url("../fonts/MonumentExtended-Ultrabold.woff2") format("woff2"),url("../fonts/MonumentExtended-Ultrabold.otf") format("opentype");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Akira Expanded";src:url("../fonts/AkiraExpanded-SuperBold.woff2") format("woff2"),url("../fonts/AkiraExpanded-SuperBold.otf") format("opentype"),url("../fonts/Akira-Expanded-Super-Bold.woff") format("woff");font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Helvetica GW";src:url("../fonts/Helvetica.woff2") format("woff2"),url("../fonts/Helvetica.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Helvetica GW";src:url("../fonts/Helvetica-Bold.woff2") format("woff2"),url("../fonts/Helvetica-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Special Elite";src:url("../fonts/SpecialElite-Regular.woff2") format("woff2"),url("../fonts/SpecialElite-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
 
 :root{
   /* Brand tokens */
@@ -62,6 +62,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:400;text-transform
 .gw-eyebrow--light{color:var(--gw-gold)}
 .bg-gw-gold .gw-eyebrow{color:var(--gw-red-deep)}
 .bg-gw-gold .gw-muted,.bg-gw-gold .text-muted{color:var(--gw-ink-soft)!important}
+.gw-prose,.gw-card .card-text,.gw-subject p{text-wrap:pretty}
 .gw-title{margin:0;font-family:var(--font-display);font-size:var(--fs-display);line-height:1.15;text-transform:uppercase;letter-spacing:var(--ls-display);text-wrap:balance}
 .gw-title--akira{font-family:var(--font-title);font-weight:900;letter-spacing:0}
 .gw-lead{margin:0;font-size:20px;line-height:1.5;color:var(--gw-muted);max-width:60ch}
@@ -82,7 +83,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:400;text-transform
 /* Buttons: use with Bootstrap .btn */
 .btn.btn-gw,.btn.btn-gw-red,.btn.btn-gw-ghost,.btn.btn-gw-light{--bs-btn-padding-x:24px;--bs-btn-padding-y:14px;--bs-btn-font-family:var(--font-display);--bs-btn-font-size:13px;--bs-btn-font-weight:400;--bs-btn-line-height:1;--bs-btn-border-width:2px;--bs-btn-border-radius:0;--bs-btn-border-color:var(--gw-ink);--bs-btn-hover-border-color:var(--gw-ink);--bs-btn-active-border-color:var(--gw-ink);--bs-btn-focus-box-shadow:0 0 0 3px rgba(31,138,138,.45);text-transform:uppercase;letter-spacing:var(--ls-display);white-space:nowrap;transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out),background .18s,color .18s}
 .btn.btn-lg{--bs-btn-padding-x:32px;--bs-btn-padding-y:18px;--bs-btn-font-size:15px}
-.btn.btn-sm{--bs-btn-padding-x:16px;--bs-btn-padding-y:10px;--bs-btn-font-size:11px}
+.btn.btn-sm{--bs-btn-padding-x:16px;--bs-btn-padding-y:10px;--bs-btn-font-size:12px;min-height:44px}
 .btn.btn-gw{--bs-btn-bg:var(--gw-gold);--bs-btn-color:var(--gw-ink);--bs-btn-hover-bg:var(--gw-gold);--bs-btn-hover-color:var(--gw-ink);--bs-btn-active-bg:var(--gw-gold);--bs-btn-active-color:var(--gw-ink);box-shadow:var(--shadow-plate)}
 .btn.btn-gw-red{--bs-btn-bg:var(--gw-red);--bs-btn-color:var(--gw-cream);--bs-btn-hover-bg:var(--gw-red);--bs-btn-hover-color:var(--gw-cream);--bs-btn-active-bg:var(--gw-red);--bs-btn-active-color:var(--gw-cream);box-shadow:var(--shadow-plate)}
 .btn.btn-gw:hover,.btn.btn-gw-red:hover{transform:translate(-1px,-1px);box-shadow:var(--shadow-plate-lg)}
@@ -91,7 +92,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:400;text-transform
 .btn.btn-gw-light{--bs-btn-bg:transparent;--bs-btn-color:var(--gw-cream);--bs-btn-border-color:var(--gw-cream);--bs-btn-hover-bg:var(--gw-cream);--bs-btn-hover-color:var(--gw-ink);--bs-btn-hover-border-color:var(--gw-cream);--bs-btn-active-bg:var(--gw-cream);--bs-btn-active-color:var(--gw-ink);--bs-btn-active-border-color:var(--gw-cream)}
 
 /* Badge: use with Bootstrap .badge */
-.badge.gw-badge{--bs-badge-padding-x:10px;--bs-badge-padding-y:4px;--bs-badge-font-size:11px;--bs-badge-font-weight:700;--bs-badge-border-radius:0;font-family:var(--font-body);letter-spacing:var(--ls-caps);text-transform:uppercase;line-height:1.3;border:2px solid transparent;background:var(--gw-gold);color:var(--gw-ink)}
+.badge.gw-badge{--bs-badge-padding-x:10px;--bs-badge-padding-y:4px;--bs-badge-font-size:12px;--bs-badge-font-weight:700;--bs-badge-border-radius:0;font-family:var(--font-body);letter-spacing:var(--ls-caps);text-transform:uppercase;line-height:1.3;border:2px solid transparent;background:var(--gw-gold);color:var(--gw-ink)}
 .badge.gw-badge--red{background:var(--gw-red);color:var(--gw-cream)}
 .badge.gw-badge--teal{background:var(--gw-teal);color:var(--gw-cream)}
 .badge.gw-badge--ink{background:var(--gw-ink);color:var(--gw-gold)}
@@ -102,6 +103,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:400;text-transform
 .gw-navbar .navbar-brand img{height:64px;width:auto;margin:-6px 0;display:block}
 .gw-navbar .navbar-nav{gap:8px 18px}
 .gw-navbar .nav-link{font-weight:700;font-size:12px;letter-spacing:var(--ls-caps);text-transform:uppercase;border-bottom:2px solid transparent;padding-bottom:2px}
+@media (max-width:991.98px){.gw-navbar .nav-link{padding-block:12px}}
 .gw-navbar .nav-link.active{border-bottom-color:var(--gw-red)}
 @media (min-width:992px){.gw-navbar .navbar-nav{align-items:center}}
 
@@ -143,7 +145,7 @@ a.card.gw-card{text-decoration:none;color:inherit}
 .gw-still__media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease-out)}
 .gw-still:hover .gw-still__media img{transform:scale(1.03)}
 .gw-still figcaption{padding:10px 12px 12px;border-top:2px solid var(--gw-ink);display:flex;flex-direction:column;gap:4px;font-size:13px;line-height:1.45}
-.gw-still__meta{display:flex;justify-content:space-between;font-family:var(--font-typewriter);font-size:11px;color:var(--gw-muted)}
+.gw-still__meta{display:flex;justify-content:space-between;font-family:var(--font-typewriter);font-size:12px;color:var(--gw-muted)}
 .gw-still__meta a{color:var(--gw-red);text-decoration:none;font-weight:700}
 
 /* Subject */
@@ -176,9 +178,9 @@ a.card.gw-card{text-decoration:none;color:inherit}
 /* Laurel strip */
 .gw-laurel-strip{background:var(--gw-ink);color:var(--gw-cream);border-block:2px solid var(--gw-gold-deep)}
 .gw-laurel-strip__count{font-family:var(--font-display);font-size:36px;line-height:1;color:var(--gw-gold)}
-.gw-laurel-strip__label{font-family:var(--font-typewriter);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gw-n-400)}
+.gw-laurel-strip__label{font-family:var(--font-typewriter);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gw-n-400)}
 .gw-laurel-strip__item{border-left:1px solid var(--gw-n-700);padding-left:16px}
-.gw-laurel-strip__item b{display:block;font-family:var(--font-display);font-weight:400;font-size:11px;text-transform:uppercase;line-height:1.25;color:var(--gw-gold);margin-bottom:4px}
+.gw-laurel-strip__item b{display:block;font-family:var(--font-display);font-weight:400;font-size:12px;text-transform:uppercase;line-height:1.25;color:var(--gw-gold);margin-bottom:4px}
 .gw-laurel-strip__item span{font-family:var(--font-typewriter);font-size:12px;line-height:1.35}
 .gw-laurel-strip a{font-weight:700;font-size:12px;letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--gw-gold);text-decoration-color:var(--gw-gold-deep);white-space:nowrap}
 .gw-laurel-img{width:100%;background:var(--gw-cream);border:2px solid var(--gw-gold-deep);padding:8px}
@@ -187,7 +189,7 @@ a.card.gw-card{text-decoration:none;color:inherit}
 .gw-747{font-family:var(--font-display);font-size:clamp(80px,12vw,140px);line-height:.9;color:var(--gw-red);text-shadow:6px 6px 0 var(--gw-gold)}
 
 /* Filters (Journey) */
-.gw-filter{font-weight:700;font-size:11px;letter-spacing:var(--ls-caps);text-transform:uppercase;padding:6px 12px;border:2px solid var(--gw-ink);background:transparent;color:var(--gw-ink);border-radius:0}
+.gw-filter{font-weight:700;font-size:12px;letter-spacing:var(--ls-caps);text-transform:uppercase;padding:6px 14px;min-height:44px;border:2px solid var(--gw-ink);background:transparent;color:var(--gw-ink);border-radius:0}
 .gw-filter.active{background:var(--gw-ink);color:var(--gw-gold)}
 
 /* Forms */
