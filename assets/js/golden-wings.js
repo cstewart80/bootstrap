@@ -12,16 +12,27 @@ document.addEventListener('DOMContentLoaded', function () {
   // Posters: lightbox
   var box = document.getElementById('gwLightbox');
   if (box) box.addEventListener('show.bs.modal', function (e) {
-    box.querySelector('img').src = (e.relatedTarget.getAttribute('data-full') || e.relatedTarget.getAttribute('src'));
+    var t = e.relatedTarget, im = box.querySelector('img'), th = t.querySelector('img') || t;
+    im.src = t.getAttribute('data-full') || th.getAttribute('src');
+    im.alt = t.getAttribute('data-alt') || th.getAttribute('alt') || '';
   });
   // Hero video: play / pause
   document.querySelectorAll('[data-gw-video-toggle]').forEach(function (btn) {
     var v = document.getElementById(btn.getAttribute('data-gw-video-toggle'));
+    if (!v) { btn.hidden = true; return; }
     btn.addEventListener('click', function () {
       if (v.paused) { v.play(); btn.textContent = '❚❚'; btn.setAttribute('aria-label', 'Pause video'); }
       else { v.pause(); btn.textContent = '▶'; btn.setAttribute('aria-label', 'Play video'); }
     });
   });
+  // Respect reduced motion: stop autoplaying hero video
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) {
+      v.pause(); v.removeAttribute('autoplay');
+      var b = document.querySelector('[data-gw-video-toggle="' + v.id + '"]');
+      if (b) { b.textContent = '\u25B6'; b.setAttribute('aria-label', 'Play video'); }
+    });
+  }
   // Press kit: screener form
   var form = document.getElementById('gwScreenerForm');
   if (form) form.addEventListener('submit', function (e) {

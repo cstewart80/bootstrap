@@ -222,3 +222,11 @@ a.card.gw-card{text-decoration:none;color:inherit}
 .gw-guild img{position:absolute;bottom:22px;left:50%;width:140px;height:140px;opacity:0;pointer-events:none;transform:translateX(-50%) scale(.2) rotate(-40deg);transition:all .45s var(--ease-out);filter:drop-shadow(0 8px 24px rgba(0,0,0,.6))}
 .gw-guild:hover{color:var(--gw-gold)}
 .gw-guild:hover img{opacity:1;transform:translateX(-50%) scale(1) rotate(0)}
+/* Hardening: skip link, focus, poster buttons, reduced motion */
+.gw-skip{position:absolute;left:12px;top:-100px;z-index:2000;padding:12px 20px;background:var(--gw-ink);color:var(--gw-cream);font-family:var(--font-display);text-transform:uppercase;text-decoration:none}
+.gw-skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--gw-teal,#1F8A8A);outline-offset:3px}
+.gw-on-dark :focus-visible,.gw-hero :focus-visible,.gw-footer :focus-visible{outline-color:var(--gw-gold)}
+.gw-poster-btn{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.btn.disabled[role=link]{cursor:not-allowed}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
