@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Posters: lightbox
   var box = document.getElementById('gwLightbox');
   if (box) box.addEventListener('show.bs.modal', function (e) {
-    box.querySelector('img').src = e.relatedTarget.getAttribute('src');
+    box.querySelector('img').src = (e.relatedTarget.getAttribute('data-full') || e.relatedTarget.getAttribute('src'));
   });
   // Hero video: play / pause
   document.querySelectorAll('[data-gw-video-toggle]').forEach(function (btn) {
