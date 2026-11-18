@@ -1,0 +1,40 @@
+/* Golden Wings: design-system patch for robyn-nuxt.
+   Copy to app/assets/css/ and add as the LAST line of main.css:
+     @import "./gw-home-patch.css";
+   Covers every Storyblok page (/, /film, /about-the-film, /press-kit) plus the Roboto swap site-wide.
+   Kept as yours: Akira/Monument title styles, Monument Ultrabold, bold body text, button shapes,
+   layout, video setup, copy. */
+
+/* 1. Roboto -> system fonts, whole site. Also delete the Google Fonts Roboto link
+   and its two preconnect lines from nuxt.config.ts -> app.head.link. */
+:root{
+  --gw-font-display:"Monument Extended","Helvetica Neue",Arial,sans-serif;
+  --gw-font-body:"GW Helvetica",Helvetica,Arial,sans-serif;
+}
+
+/* 2. Storyblok palette -> system palette.
+   slate #333f48 -> ink #1A1208 (text on gold, primary buttons) / deep teal #0F3D4C (slate section ground)
+   gold #d4af35 -> #F2B424 · navy #274c77 -> #0B2A3A · mint #a2cdb0 -> cream #F5E9C8
+   plum #525179 -> deep teal #0F3D4C · cream #f2e49f + yellow #f7e463 -> cream #F5E9C8 */
+.sb-page{
+  --sb-slate:#1A1208;
+  --sb-gold:#F2B424;
+  --sb-navy:#0B2A3A;
+  --sb-mint:#F5E9C8;
+  --sb-plum:#0F3D4C;
+  --sb-cream:#F5E9C8;
+  --sb-yellow:#F5E9C8;
+}
+.sb-theme--slate{background-color:#0F3D4C}
+.sb-imageband.sb-theme--none{background-color:#0F3D4C}
+.sb-page--bg{background-color:#0F3D4C}
+.sb-btn--primary:hover{background:#3A2A14;color:#F5E9C8}
+
+/* 3. Wave dividers off. Better: set divider_top to none in Storyblok, then delete this. */
+.sb-section--wave{margin-top:0}
+.sb-section--wave::before{content:none}
+
+/* 4. Unsplash photo grounds -> cream with grain. Clear background_image on those blocks in Storyblok;
+   !important covers the inline style until you do. */
+.sb-section--bg.sb-theme--none{background-color:#F5E9C8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1 0 0 0 0 .07 0 0 0 0 .03 0 0 0 .14 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")!important;background-size:160px 160px!important;background-repeat:repeat;color:#1A1208}
+.sb-section--bg.sb-theme--none .sb-rt{color:#1A1208}

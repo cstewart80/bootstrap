@@ -1,0 +1,15 @@
+# Media and archives are hosted on Cloudflare, not in git
+*.zip
+*.bsdesign
+*.webp
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.avif
+ILT-*/
+typekit-api-examples/
+
+*.mp4
+*.pdf

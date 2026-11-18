@@ -1,0 +1,17 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "gw-screener",
+	"main": "src/index.js",
+	"compatibility_date": "2026-11-10",
+	"observability": { "enabled": true },
+	// Add a custom domain later, e.g.:
+	// "routes": [{ "pattern": "forms.golden-wings-robyn.com", "custom_domain": true }],
+	"send_email": [{ "name": "SCREENER_EMAIL" }],
+	"vars": {
+		// Must be an address on a domain with Email Routing enabled
+		"FROM_ADDRESS": "screener@golden-wings-robyn.com",
+		// Must be a verified destination address in Email Routing
+		"TO_ADDRESS": "REPLACE_WITH_YOUR_VERIFIED_EMAIL",
+		"ALLOWED_ORIGINS": "https://golden-wings-robyn.com,https://www.golden-wings-robyn.com,http://localhost:8080"
+	}
+}

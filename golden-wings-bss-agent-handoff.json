@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft-2020-12/schema",
+  "title": "Golden Wings x BSS agent handoff",
+  "version": "1.0.0",
+  "generated": "2026-11-18T20:45:00-08:00",
+  "generated_by": "Vibe (JoanBtx) session, post ABOUT_A_BITCH ingest + Dolly install",
+
+  "owner": {
+    "name": "Caleb Mills Stewart",
+    "studio": "Get Booked Studio",
+    "site": "golden-wings-robyn.com",
+    "project_file": "C:\\Users\\Caleb\\Documents\\Projects\\Bootstrap\\golden-wings-robyn.bsdesign",
+    "export_root": "C:\\Users\\Caleb\\Documents\\Projects\\Bootstrap",
+    "crawl_source": "C:\\RUNB2\\CRAWLS\\COLLECTIONS\\GOLDEN-WINGS-FULL"
+  },
+
+  "hard_rules": [
+    "Journey post pages stay FLAT in the site root as journey-<slug>.html. Relative assets/ links depend on it. Never move into a subfolder without rewriting every src/href.",
+    "All styling lives in assets/css/golden-wings.css via the gw- class vocabulary. BSS must never restyle imported pages into its own component classes.",
+    "After File > Import > Website in Bootstrap Studio, check EVERY imported page for: (1) rewritten relative links, (2) dropped --gw-* CSS variables, (3) reordered head tags. Fix before saving.",
+    "If BSS mangles an import, delete and re-import from 'Golden Wings Design System.zip'. The zip is the source of truth. Never hand-reconcile a broken import.",
+    "No prev/next post navigation exists on any journey post and none should be added. btn-gw-ghost exists in golden-wings.css but is unused for post navs.",
+    "Fonts: Typekit kit vvd4xah currently loaded. Local @font-face equivalents in assets/fonts/ (Redondo Ave, Monument Extended, Akira Expanded, Comma Sans, Airstream, Special Elite, Helvetica). If dropping Typekit, swap across ALL pages in one pass.",
+    "Deploy is fully static: File > Export produces the deploy root for Cloudflare. Validate by opening pages from the export folder before pushing.",
+    "Footer links in original export pages (index, film, about, people, journey, contact, press-kit) point at absolute golden-wings-robyn.com URLs for privacy/terms/SMS. Repoint to privacy-policy.html, terms-of-use.html, sms-opt-in.html.",
+    "Form backends: extend screener-worker/ Cloudflare Worker (src/index.js, wrangler.jsonc). No second worker."
+  ],
+
+  "current_state": {
+    "git": {
+      "branch": "master",
+      "last_commit": "eb9ba97",
+      "warning": "Session changes from Nov 17-18 2026 are UNCOMMITTED. Commit before further churn."
+    },
+    "last_installed_post": {
+      "file": "journey-dolly-parton-saint-of-rhinestones-queer-subtext-and-the-cheap-seats.html",
+      "bytes": 15307,
+      "status": "installed and verified",
+      "date": "Nov 18, 2026",
+      "tag": "People",
+      "filters_on_index": "People tag works with journey.html filter grid (data-gw-tag)",
+      "hero": {
+        "src": "assets/img/journey/dolly-parton-saint-of-rhinestones-queer-subtext-and-the-cheap-seats/01.jpg",
+        "dimensions": "1920x1080",
+        "verified": true
+      },
+      "structure": "All 8 section anchors verified; ends with gw 'All dispatches' button; LF line endings; gw- design system classes only."
+    },
+    "journey_index": {
+      "file": "journey.html",
+      "bytes": 24801,
+      "status": "card grid updated Nov 18 2026",
+      "note": "Dolly People card is the FIRST card, before the Special Dispatch meta cards. Cards use data-gw-tag for filtering."
+    }
+  },
+
+  "pending_tasks": [
+    { "id": "commit-session", "task": "git add -A && git commit the Nov 17-18 session changes", "priority": "high" },
+    { "id": "bss-import", "task": "Manual BSS import of journey.html + journey-dolly-*.html into golden-wings-robyn.bsdesign per hard_rules", "priority": "high", "owner": "Caleb (manual per project rules)" },
+    { "id": "footer-repoint", "task": "Repoint footer privacy/terms/SMS links from absolute golden-wings-robyn.com URLs to local pages", "priority": "medium" },
+    { "id": "typekit-decision", "task": "Decide Typekit vs local @font-face; if swapping, do ALL pages in one pass", "priority": "low" },
+    { "id": "cloudflare-redirects", "task": "Cloudflare redirect mapping (parked, mapped in golden-wings-site.md)", "priority": "parked" },
+    { "id": "staging-site", "task": "Dev staging site (parked)", "priority": "parked" },
+    { "id": "sms-press-endpoints", "task": "SMS opt-in + press-kit screener endpoints in screener-worker", "priority": "parked" }
+  ],
+
+  "reference_files": [
+    { "file": "gw-design-system.md", "purpose": "Full gw- class reference" },
+    { "file": "golden-wings-site.md", "purpose": "Site-specific state: post inventory, redirect mapping, parser rules" },
+    { "file": "Golden Wings Design System.zip", "purpose": "Source of truth for imported page markup and assets" }
+  ],
+
+  "notes": [
+    "Local site preview: drag journey.html (or any page) into a browser; fully static, file:// works. No server needed until Cloudflare export.",
+    "BSS visual canvas can reflow generated markup; prefer code view for sanity checks.",
+    " HARD RULING (Caleb, Nov 18 2026): Desktop Commander (device 'max') is the ONLY channel for work on Caleb's machine. NEVER use the emulated /local-mount bash bridge: it wedges ('computer stopped answering') and cannot run installed programs (git, node, python). PowerShell $ variables get stripped when nesting powershell -Command inside the powershell shell; write scripts to C:\\Temp as files and run with -NoProfile -ExecutionPolicy Bypass -File. His PowerShell profile has a pre-existing syntax error at line 171 (function vsdev); scripts still run despite the parser noise. start_process remote timeout caps at 3000ms; poll with read_process_output using the PID from start_process output. DC write_file is chunked: 'rewrite' first chunk, then 'append'. The DC terminal (npx @wonderwhy-er/desktop-commander@latest remote) must stay running."
+  ]
+}

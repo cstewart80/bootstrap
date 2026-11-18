@@ -1,0 +1,8 @@
+{
+	"name": "gw-screener",
+	"private": true,
+	"type": "module",
+	"scripts": { "dev": "wrangler dev", "deploy": "wrangler deploy" },
+	"dependencies": { "mimetext": "^3.0.27" },
+	"devDependencies": { "wrangler": "^4" }
+}
