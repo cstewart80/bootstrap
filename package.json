@@ -1,0 +1,20 @@
+{
+  "name": "golden-wings-robyn",
+  "version": "2.0.0",
+  "private": true,
+  "description": "golden-wings-robyn.com static site (Bootstrap Studio export) + shell handoff scripts",
+  "type": "module",
+  "scripts": {
+    "images": "node handoff/embed-journey-images.mjs",
+    "images:dry": "node handoff/embed-journey-images.mjs --dry-run",
+    "links": "node handoff/fix-local-links.mjs",
+    "links:dry": "node handoff/fix-local-links.mjs --dry-run",
+    "redirects": "node handoff/make-redirects.mjs",
+    "fonts": "node handoff/strip-typekit.mjs",
+    "fonts:dry": "node handoff/strip-typekit.mjs --dry-run",
+    "handoff": "npm run images:dry && npm run links:dry"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
