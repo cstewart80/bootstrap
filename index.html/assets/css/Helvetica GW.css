@@ -1,0 +1,15 @@
+@font-face {
+	font-family: 'Helvetica GW';
+	src: url(/assets/fonts/Helvetica%20GW-fe3362832aa3ce3520f37a4f0587ce87.ttf?h=5ef4cb2fa7cd41656c22afa4d4f2f4ba) format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica GW';
+	src: url(/assets/fonts/Helvetica%20GW-e48cf5f450591d6bcc5d0c51a48905df.ttf?h=5ef4cb2fa7cd41656c22afa4d4f2f4ba) format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}

@@ -1,0 +1,19 @@
+# Non-site files to keep out of the Cloudflare upload.
+.git
+.gitignore
+node_modules
+handoff
+screener-worker
+typekit-api-examples
+ILT-*
+*.zip
+*.bsdesign
+*.bsdesign-*
+package.json
+package-lock.json
+golden-wings-bss-agent-handoff.json
+golden-wings.js
+wrangler.toml
+.assetsignore
+about.remote.html
+README.md

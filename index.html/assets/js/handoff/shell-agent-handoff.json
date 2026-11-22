@@ -1,0 +1,182 @@
+{
+  "handoff_version": "2.0",
+  "generated": "2026-11-21T06:05:00-08:00",
+  "prepared_by": "Bootstrap Studio Assistant (in-app session) for a shell/CLI agent on Caleb's PC",
+  "site": "golden-wings-robyn.com",
+  "purpose": "Finish the remaining Golden Wings migration work from a plain shell (PowerShell + node). No Bootstrap Studio, no git.",
+  "hard_rules": [
+    "Do NOT run any git commands. Git work is explicitly deferred by the owner.",
+    "Do NOT open, modify, or save golden-wings-robyn.bsdesign.",
+    "Only edit text files (.html/.css/.js/.json/.mjs). Do not move or delete files.",
+    "Run every script with --dry-run first, review output, then run for real.",
+    "Before exporting the site from Bootstrap Studio, move the handoff/ folder OUT of the project so it is not published.",
+    "Layout is FLAT at project root: journey-<slug>.html pages, golden-wings.css / golden-wings.js / font .css+.ttf at root, images in journey/<slug>/, brand/, imagery/. The 'assets/...' paths from handoff v1.5 are stale."
+  ],
+  "environment": {
+    "os": "Windows, PowerShell",
+    "project_root": "C:\\Users\\Caleb\\Documents\\Projects\\Bootstrap",
+    "node": "node (already installed; the mirror scripts run on it)",
+    "site_mirror_root": "E:\\~GoldenWings\\presskit\\robyn-site-mirror",
+    "mirror_public": "E:\\~GoldenWings\\presskit\\robyn-site-mirror\\public",
+    "mirror_report": "E:\\~GoldenWings\\presskit\\robyn-site-mirror\\mirror-report.json",
+    "sitemap": "E:\\~GoldenWings\\presskit\\robyn-site-mirror\\sitemap.xml",
+    "wacz": "C:\\RUNB2\\CRAWLS\\COLLECTIONS\\GOLDEN-WINGS-FULL\\golden-wings-full.wacz",
+    "warc_dir": "C:\\RUNB2\\CRAWLS\\COLLECTIONS\\GOLDEN-WINGS-FULL\\archive",
+    "cdx_dir": "C:\\RUNB2\\CRAWLS\\COLLECTIONS\\GOLDEN-WINGS-FULL\\warc-cdx",
+    "nuxt_root": "E:\\~GoldenWings\\presskit\\robyn-nuxt",
+    "wrangler_toml_template": "E:\\~GoldenWings\\presskit\\robyn-site-mirror\\wrangler.toml",
+    "dev_domain": "dev.golden-wings-robyn.com"
+  },
+  "current_state": {
+    "journey_pages": "21 flat pages journey-<slug>.html at project root, ALREADY imported (the v1.5 zip-import task is DONE - do not re-import)",
+    "media_marker": "Each journey page still contains a <!-- MEDIA: ... --> comment where the original post images go",
+    "image_folders": "journey/<slug>/ exists for 18 of 21 posts; see posts[].has_image_folder",
+    "missing_image_folders": [
+      "golden-wings-takes-flight-celebrating-wins-at-clown-international-and-independent-shorts-awards",
+      "janice-engel-mentor-documentary",
+      "making-a-no-budget-documentary"
+    ],
+    "design_system": "gw-* classes in golden-wings.css, golden-wings.js at root, local fonts at root (Airstream, Helvetica GW, Monument Extended, Pacifico, Special Elite), logo at brand/logo-consolidated.webp, Typekit kit vvd4xah still referenced in pages",
+    "studio_state": "Bootstrap Studio has credits.html open with one component selected (lines 41-127). No pending studio-side edits; leave the .bsdesign alone."
+  },
+  "scripts": [
+    {
+      "file": "handoff/embed-journey-images.mjs",
+      "usage": "node handoff\\embed-journey-images.mjs [--dry-run]",
+      "does": "Replaces the MEDIA marker in each journey-<slug>.html with figure.gw-prose > img[loading=lazy] blocks, mapping the mirror page's squarespace-cdn <img> order to journey/<slug>/NN.* files by position. Posts with no local folder are reported MISS and left untouched."
+    },
+    {
+      "file": "handoff/fix-local-links.mjs",
+      "usage": "node handoff\\fix-local-links.mjs [--dry-run]",
+      "does": "Rewrites absolute self-links (https://www.golden-wings-robyn.com/<route>) to local <route>.html in every root .html when that page exists locally (privacy-policy, terms-of-use, sms-opt-in, contact, journey, ...). Also rewrites /indie-doc-journey/<slug> links to journey-<slug>.html. Unknown routes are left for the redirects task."
+    },
+    {
+      "file": "handoff/make-redirects.mjs",
+      "usage": "node handoff\\make-redirects.mjs",
+      "does": "Writes handoff/redirects.csv (source,target,status) covering all 21 blog slugs, the corrupted nested lessons-learned URL, tag/category pages, and the blog index."
+    },
+    {
+      "file": "handoff/strip-typekit.mjs",
+      "usage": "node handoff\\strip-typekit.mjs [--dry-run]",
+      "does": "Optional: removes Typekit kit vvd4xah script/preconnect tags from all pages. Local @font-face files already cover every family."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "embed-images",
+      "priority": "high",
+      "steps": [
+        "cd C:\\Users\\Caleb\\Documents\\Projects\\Bootstrap",
+        "node handoff\\embed-journey-images.mjs --dry-run   (review output)",
+        "node handoff\\embed-journey-images.mjs",
+        "Handle the 3 MISS posts: read their original img URLs from the mirror page (E:\\~GoldenWings\\presskit\\robyn-site-mirror\\public\\indie-doc-journey\\<slug>\\index.html), then either download live (mkdir journey\\<slug> ; curl -L -o journey\\<slug>\\01.ext \"<url>\") or extract from the WACZ (grep the URL in C:\\RUNB2\\CRAWLS\\COLLECTIONS\\GOLDEN-WINGS-FULL\\warc-cdx\\*.cdx, pull the record from the matching .warc.gz). Then rerun the script.",
+        "Verify: Select-String -Path journey-*.html -Pattern 'MEDIA:'   (expect no matches, or only the MISS pages)"
+      ]
+    },
+    {
+      "id": "local-links",
+      "priority": "high",
+      "steps": [
+        "node handoff\\fix-local-links.mjs --dry-run",
+        "node handoff\\fix-local-links.mjs",
+        "Verify leftovers: Select-String -Path *.html -Pattern 'golden-wings-robyn.com/' | Select-Object -Unique   (remaining hits should be intentional external links or redirect candidates)"
+      ]
+    },
+    {
+      "id": "redirects",
+      "priority": "medium",
+      "steps": [
+        "node handoff\\make-redirects.mjs   -> handoff/redirects.csv",
+        "Cloudflare dashboard -> zone golden-wings-robyn.com -> Rules -> Bulk Redirects -> create a list and upload redirects.csv (columns: source,target,status). If the site is served by a Worker, zone-level rules still apply; verify one with: curl -I https://www.golden-wings-robyn.com/indie-doc-journey/bhiff-here-we-come",
+        "Top-level old routes: use mirror-report.json + sitemap.xml as the canonical old-URL list. Apply redirects_static.top_level_suggested; the needs_caleb_decision routes default to 404 (no rule) until Caleb decides."
+      ]
+    },
+    {
+      "id": "staging",
+      "priority": "medium",
+      "steps": [
+        "One-time, by Caleb in Bootstrap Studio: File > Export to C:\\Users\\Caleb\\Documents\\Projects\\Bootstrap\\export. BEFORE exporting, move handoff\\ out of the project.",
+        "copy E:\\~GoldenWings\\presskit\\robyn-site-mirror\\wrangler.toml C:\\Users\\Caleb\\Documents\\Projects\\Bootstrap\\export\\wrangler.toml",
+        "Edit the toml: [assets] directory = \\\".\\\", keep route dev.golden-wings-robyn.com, keep html_handling = auto-trailing-slash and the 404 page.",
+        "cd export ; npx wrangler deploy",
+        "Verify: curl -I https://dev.golden-wings-robyn.com/journey.html and a journey post. After review, flip the route to production and redeploy."
+      ]
+    },
+    {
+      "id": "nuxt-salvage",
+      "priority": "medium",
+      "steps": [
+        "winget install SQLite.SQLite   (only if sqlite3 is missing)",
+        "sqlite3 \"E:\\~GoldenWings\\presskit\\robyn-nuxt\\.data\\content\\contents.sqlite\" \".tables\"",
+        "sqlite3 \"E:\\~GoldenWings\\presskit\\robyn-nuxt\\.data\\content\\contents.sqlite\" \"SELECT * FROM contents;\" > nuxt-content-dump.txt",
+        "Read E:\\~GoldenWings\\presskit\\robyn-nuxt\\BRIEF.md, DESIGN-CONTRACT.md, CHANGES.md",
+        "Merge any press-kit copy newer than press.html by hand. Do NOT port Vue components or nuxt.config."
+      ]
+    },
+    {
+      "id": "form-wiring",
+      "priority": "low",
+      "steps": [
+        "Locate the worker: dir /s /b screener-worker from the project root. If absent, the handler pattern to port is E:\\~GoldenWings\\presskit\\robyn-nuxt\\home-worker.mjs",
+        "Add /sms-opt-in and /screener (press kit) endpoints to the single worker (src/index.js + wrangler.jsonc)",
+        "npx wrangler secret put <NAME> for each secret ; npx wrangler deploy",
+        "Test: curl -X POST https://<worker-url>/sms-opt-in -d 'phone=+1...' "
+      ]
+    },
+    {
+      "id": "fonts-decision",
+      "priority": "low",
+      "steps": [
+        "Optional, only if Caleb decides to drop Typekit: node handoff\\strip-typekit.mjs --dry-run, then for real",
+        "Verify: Select-String -Path *.html -Pattern 'typekit'  (expect no matches); confirm fonts still render via the root font .css files"
+      ]
+    }
+  ],
+  "posts": [
+    {"slug": "10-documentaries-that-will-inspire-and-transform-you", "tag": "Craft", "date": "Jul 4", "images": 13, "has_image_folder": true},
+    {"slug": "accidental-selfportraits-a-filmmakers-journey-through-time-and-memory", "tag": "Festivals", "date": "Nov 13", "images": 7, "has_image_folder": true},
+    {"slug": "bhiff-here-we-come", "tag": "Festivals", "date": "Mar 18, 2025", "images": 5, "has_image_folder": true},
+    {"slug": "dolly-parton-saint-of-rhinestones-queer-subtext-and-the-cheap-seats", "tag": null, "date": null, "images": 1, "has_image_folder": true, "note": "extra page, not in the v1.5 list of 20"},
+    {"slug": "from-nickelodeon-to-the-sky-crafting-the-opening-for-golden-wings-documentary", "tag": "Craft", "date": "2024", "images": 8, "has_image_folder": true},
+    {"slug": "golden-wings-an-award-winning-documentary-on-family-legacy-and-aviation", "tag": "Festivals", "date": "Nov 14", "images": 8, "has_image_folder": true},
+    {"slug": "golden-wings-fifty-year-flight-path-celebrating-milestones-in-aviations-legacy", "tag": "Craft", "date": "Aug 14", "images": 2, "has_image_folder": true},
+    {"slug": "golden-wings-soars-website-anniversary-celebration-amp-first-look-at-our-new-3-minute-teaser", "tag": "Craft", "date": "May 2", "images": 9, "has_image_folder": true},
+    {"slug": "golden-wings-takes-flight-celebrating-wins-at-clown-international-and-independent-shorts-awards", "tag": "Festivals", "date": "Jul 25", "images": 0, "has_image_folder": false},
+    {"slug": "i-sued-meta-in-small-claims-court-and-won", "tag": "Special Dispatch", "date": "Jul 9, 2026", "images": 30, "has_image_folder": true},
+    {"slug": "janice-engel-mentor-documentary", "tag": "People", "date": "2024", "images": 0, "has_image_folder": false},
+    {"slug": "jdirector-statement", "tag": "People", "date": "Jul 11", "images": 6, "has_image_folder": true},
+    {"slug": "jonah-wrote-this-ws655-mlew4", "tag": "People", "date": "May 7", "images": 8, "has_image_folder": true},
+    {"slug": "lessons-learned-from-a-virtual-screening-and-from-life", "tag": "Festivals", "date": "Nov 25", "images": 2, "has_image_folder": true},
+    {"slug": "life-meets-you-where-you-are", "tag": "Craft", "date": "Oct 25", "images": 10, "has_image_folder": true},
+    {"slug": "making-a-no-budget-documentary", "tag": "Craft", "date": "Jun 13, 2024", "images": 0, "has_image_folder": false},
+    {"slug": "swedish-film-awards-winner", "tag": "Festivals", "date": "Aug 1, 2025", "images": 10, "has_image_folder": true},
+    {"slug": "the-middle-seat-manifesto-a-survivors-guide-nnben-fmabn", "tag": "Craft", "date": "Feb 20", "images": 10, "has_image_folder": true},
+    {"slug": "weight-loss-journey-golden-wings-documentary", "tag": "Craft", "date": "Jun 23", "images": 1, "has_image_folder": true},
+    {"slug": "wrapping-up-the-holidays-and-diving-into-the-wonderful-world-of-mocha-masks-xetef-w45bk", "tag": "Craft", "date": "Feb 4", "images": 7, "has_image_folder": true},
+    {"slug": "zucked-on-christmas-eve-part-1", "tag": "Special Dispatch", "date": "Jul 9, 2026", "images": 10, "has_image_folder": true}
+  ],
+  "redirects_static": {
+    "corrupted_url": {
+      "source": "/indie-doc-journey/lessons-learned-from-a-virtual-screening-and-from-lifehttps/wwwgolden-wings-robyncom/blog-page-url/new-post-title/",
+      "target": "/journey-lessons-learned-from-a-virtual-screening-and-from-life.html",
+      "status": 301
+    },
+    "tags": ["#AviationDocumentary", "#BehindTheScenes", "#BlogPost", "#ChineseTheater", "#DocumentaryJourney", "#Filmmaking", "#IndieFilm", "#SiliconBeachFilmFestival", "#StudentProject"],
+    "categories": ["Documentaries", "Entertainment"],
+    "blog_index": ["/indie-doc-journey", "/indie-doc-journey/"],
+    "top_level_suggested": [
+      {"source": "/home", "target": "/index.html", "status": 301},
+      {"source": "/about-the-film", "target": "/synopsis.html", "status": 301, "note": "verify synopsis.html is the right destination"},
+      {"source": "/contact", "target": "/contact.html", "status": 301},
+      {"source": "/privacy-policy", "target": "/privacy-policy.html", "status": 301},
+      {"source": "/terms-of-use", "target": "/terms-of-use.html", "status": 301}
+    ],
+    "needs_caleb_decision": ["1971", "644", "elevate", "faq-1", "faqs-4", "film", "giving-page-1-1", "goldreels", "goldreels-desk", "goldreels-droid", "goldreels-ios", "lgbt", "new-page", "pascua", "poster", "prekick", "pride", "sbiff", "sbiff/p/educational-package", "sbiff/p/gift-card", "stewardess-college-1968", "caleb-blog-preview", "introduction-to-documentary-filmmaking-a-beginners-guide", "league-charter"]
+  },
+  "open_questions_for_caleb": [
+    "keep/redirect/drop for each route in redirects_static.needs_caleb_decision",
+    "drop Typekit (kit vvd4xah) or keep it - local fonts exist either way",
+    "the 3 posts without local image folders: fetch from WACZ, live squarespace-cdn URLs, or laurel-strip fallback",
+    "should journey-dolly-parton-...html be linked from journey.html"
+  ]
+}
